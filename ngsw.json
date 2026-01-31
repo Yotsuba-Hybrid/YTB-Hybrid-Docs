@@ -1,0 +1,102 @@
+{
+  "configVersion": 1,
+  "timestamp": 1769898094021,
+  "index": "/YotsubaEngine/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/YotsubaEngine/favicon.ico",
+        "/YotsubaEngine/index.html",
+        "/YotsubaEngine/main-QBZSH4VC.js",
+        "/YotsubaEngine/manifest.webmanifest",
+        "/YotsubaEngine/styles-RPOVWWQU.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/YotsubaEngine/icons/icon-128x128.png",
+        "/YotsubaEngine/icons/icon-144x144.png",
+        "/YotsubaEngine/icons/icon-152x152.png",
+        "/YotsubaEngine/icons/icon-192x192.png",
+        "/YotsubaEngine/icons/icon-384x384.png",
+        "/YotsubaEngine/icons/icon-512x512.png",
+        "/YotsubaEngine/icons/icon-72x72.png",
+        "/YotsubaEngine/icons/icon-96x96.png",
+        "/YotsubaEngine/logo_only_sin_fondo.png",
+        "/YotsubaEngine/screenshot engine (1).png",
+        "/YotsubaEngine/screenshot engine (2).png",
+        "/YotsubaEngine/ytb.svg",
+        "/YotsubaEngine/ytb_horizontal.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-cache",
+      "patterns": [
+        "\\/api\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 3600000,
+      "timeoutMs": 10000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/YotsubaEngine/favicon.ico": "28ce5260ce10ebb8b1db49709988d27f2febe71f",
+    "/YotsubaEngine/icons/icon-128x128.png": "bf36ebd513e4ebd5b01d9849e817a158ea4c7dd6",
+    "/YotsubaEngine/icons/icon-144x144.png": "aa33c8cbc7d7d321bf6e241ac71d352a6a5cf43b",
+    "/YotsubaEngine/icons/icon-152x152.png": "e1434c8ca1568bac2bc4d7e52e68eb9e4215461d",
+    "/YotsubaEngine/icons/icon-192x192.png": "5bb284419c02eccaa82a0ab9d8099924d81b539c",
+    "/YotsubaEngine/icons/icon-384x384.png": "1120fea00e003b0aee053091daa976fa43c96644",
+    "/YotsubaEngine/icons/icon-512x512.png": "5fa4c8f0ed4a7c201861a0d3bcdefacd52a4d3a0",
+    "/YotsubaEngine/icons/icon-72x72.png": "b707d17fe70e882ebfc658d3681943e5428ceab5",
+    "/YotsubaEngine/icons/icon-96x96.png": "570fcf5252caae1c39a8fb43decbbf38ea5ae622",
+    "/YotsubaEngine/index.html": "3b03ed2c2c3b1fbf6c747a3b1a5571d364a965b0",
+    "/YotsubaEngine/logo_only_sin_fondo.png": "54d266d7dac7b05fc68bc07b5e707efadb362c62",
+    "/YotsubaEngine/main-QBZSH4VC.js": "ffd85280c9a8939f5044f4f39602fd02c988094d",
+    "/YotsubaEngine/manifest.webmanifest": "3feeb7cb90b819b2584a7a8646c8b316f58f3537",
+    "/YotsubaEngine/screenshot engine (1).png": "ce8a02e129312e47aac558cb53d7d7c2362f0e03",
+    "/YotsubaEngine/screenshot engine (2).png": "331c3b8b1c0987d9c6f64e2f7bb015b0856e1251",
+    "/YotsubaEngine/styles-RPOVWWQU.css": "a59184bac202eddce5db1edaade49fec9c80d62d",
+    "/YotsubaEngine/ytb.svg": "31a92a9e939819c9f1c5b658257a16fa6122568c",
+    "/YotsubaEngine/ytb_horizontal.svg": "f6370dc74649a71ea0cc1c1cea40647a17774d04"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\YTBEngine\\Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E72F4666-F9A7-ECEA-9495-0941841CF153}|YotsubaWebApi.csproj|c:\\ytbengine\\api\\infrastructure\\discordclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E72F4666-F9A7-ECEA-9495-0941841CF153}|YotsubaWebApi.csproj|solutionrelative:infrastructure\\discordclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E72F4666-F9A7-ECEA-9495-0941841CF153}|YotsubaWebApi.csproj|c:\\ytbengine\\api\\configuration\\discordconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E72F4666-F9A7-ECEA-9495-0941841CF153}|YotsubaWebApi.csproj|solutionrelative:configuration\\discordconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E72F4666-F9A7-ECEA-9495-0941841CF153}|YotsubaWebApi.csproj|c:\\ytbengine\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E72F4666-F9A7-ECEA-9495-0941841CF153}|YotsubaWebApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DiscordConfiguration.cs",
+              "DocumentMoniker": "C:\\YTBEngine\\Api\\Configuration\\DiscordConfiguration.cs",
+              "RelativeDocumentMoniker": "Configuration\\DiscordConfiguration.cs",
+              "ToolTip": "C:\\YTBEngine\\Api\\Configuration\\DiscordConfiguration.cs",
+              "RelativeToolTip": "Configuration\\DiscordConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T04:07:09.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DiscordClient.cs",
+              "DocumentMoniker": "C:\\YTBEngine\\Api\\Infrastructure\\DiscordClient.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\DiscordClient.cs",
+              "ToolTip": "C:\\YTBEngine\\Api\\Infrastructure\\DiscordClient.cs",
+              "RelativeToolTip": "Infrastructure\\DiscordClient.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAhwAgAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T04:06:05.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\YTBEngine\\Api\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\YTBEngine\\Api\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAwC4AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T04:04:27.193Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
