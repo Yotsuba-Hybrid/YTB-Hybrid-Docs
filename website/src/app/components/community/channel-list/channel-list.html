@@ -1,0 +1,38 @@
+<div class="channel-list-container">
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  @if(error && !loading){
+  <div class="error-container">
+    <p>Error al cargar los canales</p>
+    <button mat-button color="primary" (click)="loadChannels()">Reintentar</button>
+  </div>
+}
+
+  @if(!loading && !error){
+  <div >
+    <div *ngFor="let category of categories" class="channel-category">
+      <button class="category-header" mat-button color="primary" (click)="toggleCategory(category)" 
+              [attr.aria-expanded]="!category.collapsed"
+              [attr.aria-label]="'Categoría ' + category.name">
+        <mat-icon class="category-icon" [class.collapsed]="category.collapsed">
+          {{ category.collapsed ? 'chevron_right' : 'expand_more' }}
+        </mat-icon>
+        <span class="category-name" style="text-align: left;">{{ category.name }}</span>
+      </button>
+      
+      <mat-nav-list class="channel-list" [@slideDown]="category.collapsed ? 'collapsed' : 'expanded'">
+        @for(channel of category.channels; track channel.id){
+        <mat-list-item 
+          [class.selected]="channel.id === selectedChannelId"
+          (click)="selectChannel(channel)">
+          <mat-icon matListItemIcon >{{ getChannelIcon(channel) }}</mat-icon>
+          <span matListItemTitle class="channel-name">{{ channel.name }}</span>
+        </mat-list-item>
+      }
+      </mat-nav-list>
+    </div>
+  </div>
+}
+</div>

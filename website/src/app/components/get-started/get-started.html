@@ -1,0 +1,60 @@
+<section class="get-started-section section">
+  <div class="container">
+    <h2 class="section-title">Comienza en Minutos</h2>
+    <p class="section-subtitle">
+      Sigue estos pasos para crear tu primer juego con YotsubaEngine
+    </p>
+    
+    <div class="steps-container">
+      @for (step of steps; track step.number) {
+        <div class="step-card">
+          <div class="step-number">{{ step.number }}</div>
+          <div class="step-content">
+            <h3 class="step-title">{{ step.title }}</h3>
+            <p class="step-description">{{ step.description }}</p>
+            @if (step.command) {
+              <div class="command-box">
+                <code class="command-text">{{ step.command }}</code>
+                <button 
+                  mat-icon-button 
+                  class="copy-button"
+                  (click)="copyCommand(step.command)"
+                  title="Copiar comando">
+                  <mat-icon>content_copy</mat-icon>
+                </button>
+              </div>
+            }
+          </div>
+          @if (step.number < steps.length) {
+            <div class="step-connector"></div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="cta-container">
+      <mat-card class="cta-card">
+        <mat-card-content>
+          <h3 class="cta-title">¿Listo para empezar?</h3>
+          <p class="cta-description">
+            Descarga YotsubaEngine ahora y únete a nuestra comunidad de desarrolladores.
+          </p>
+          <div class="cta-buttons">
+            <button mat-raised-button color="primary" class="cta-button">
+              <mat-icon>download</mat-icon>
+              Descargar Ahora
+            </button>
+            <button mat-stroked-button class="cta-button">
+              <mat-icon>menu_book</mat-icon>
+              Ver Documentación
+            </button>
+            <button mat-stroked-button color="accent" class="cta-button" style="margin-left: 8px;" onclick="window.open('https://www.buymeacoffee.com/yotsubaengine', '_blank')">
+              <mat-icon>favorite</mat-icon>
+              Donations
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

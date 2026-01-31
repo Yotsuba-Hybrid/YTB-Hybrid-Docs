@@ -1,0 +1,22 @@
+<section id="features" class="features-section section">
+  <div class="container">
+    <h2 class="section-title">Características Principales</h2>
+    <p class="section-subtitle">
+      Todo lo que necesitas para crear juegos increíbles
+    </p>
+    
+    <div class="features-grid">
+      @for (feature of features; track feature.title) {
+        <mat-card class="feature-card">
+          <mat-card-content>
+            <div class="feature-icon">
+              <mat-icon>{{ feature.icon }}</mat-icon>
+            </div>
+            <h3 class="feature-title">{{ feature.title }}</h3>
+            <p class="feature-description">{{ feature.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</section>

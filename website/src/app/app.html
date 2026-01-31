@@ -1,0 +1,34 @@
+<!-- Navigation -->
+@if (!isCommunityRoute) {
+  <mat-toolbar class="navbar" color="primary">
+    <div class="navbar-content">
+      <div class="navbar-brand" routerLink="/" style="cursor: pointer;">
+        <img src="logo_only_sin_fondo.png" alt="Yotsuba Logo" class="logo-image">
+        <span class="brand-text" style="text-shadow: 1px 1px 2px orange;">Yotsuba <span style="color: #fff;">Hybrid</span></span>
+      </div>
+      <nav class="navbar-nav">
+        <a href="#features" class="nav-link">Características</a>
+        <a href="#" class="nav-link">Documentación</a>
+        <a routerLink="/community" class="nav-link" style="cursor: pointer;">Comunidad</a>
+        <button mat-raised-button class="download-nav-button">
+          <mat-icon>download</mat-icon>
+          Descargar
+        </button>
+        <button mat-stroked-button color="accent" class="donate-nav-button" style="margin-left: 12px;" onclick="window.open('https://www.buymeacoffee.com/yotsubaengine', '_blank')">
+          <mat-icon>favorite</mat-icon>
+          Donations
+        </button>
+      </nav>
+    </div>
+  </mat-toolbar>
+}
+
+<!-- Main Content - Router Outlet -->
+<main class="main-content" [class.community-active]="isCommunityRoute">
+  <router-outlet />
+</main>
+
+<!-- Footer -->
+@if (!isCommunityRoute) {
+  <app-footer></app-footer>
+}

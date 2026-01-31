@@ -1,0 +1,75 @@
+<footer class="footer">
+  <div class="footer-content container">
+    <div class="footer-grid">
+      <!-- Brand Section -->
+      <div class="footer-brand">
+        <img src="ytb.svg" alt="Yotsuba Logo" class="footer-logo">
+        <h3 class="brand-name">YotsubaEngine</h3>
+        <p class="brand-description">
+          Motor de videojuegos 2D/3D multiplataforma construido con MonoGame y C#.
+          Código abierto y diseñado para alto rendimiento.
+        </p>
+        <div class="social-links">
+          @for (social of socialLinks; track social.name) {
+            <a 
+              [href]="social.url" 
+              [attr.aria-label]="social.name"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link">
+              <mat-icon>{{ social.icon }}</mat-icon>
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Product Links -->
+      <div class="footer-links">
+        <h4 class="links-title">Producto</h4>
+        <ul class="links-list">
+          @for (link of links.product; track link.label) {
+            <li>
+              <a [href]="link.url" class="footer-link">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Developers Links -->
+      <div class="footer-links">
+        <h4 class="links-title">Desarrolladores</h4>
+        <ul class="links-list">
+          @for (link of links.developers; track link.label) {
+            <li>
+              <a [href]="link.url" class="footer-link">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Community Links -->
+      <div class="footer-links">
+        <h4 class="links-title">Comunidad</h4>
+        <ul class="links-list">
+          @for (link of links.community; track link.label) {
+            <li>
+              <a [href]="link.url" class="footer-link">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {{ currentYear }} YotsubaEngine. Licencia MIT. Código abierto y libre.
+      </p>
+      <div class="footer-bottom-links">
+        <a href="#" class="footer-bottom-link">Privacidad</a>
+        <a href="#" class="footer-bottom-link">Términos</a>
+        <a href="#" class="footer-bottom-link">Licencia</a>
+      </div>
+    </div>
+  </div>
+</footer>

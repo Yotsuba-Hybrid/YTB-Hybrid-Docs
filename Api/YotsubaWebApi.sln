@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YotsubaWebApi", "YotsubaWebApi.csproj", "{E72F4666-F9A7-ECEA-9495-0941841CF153}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E72F4666-F9A7-ECEA-9495-0941841CF153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E72F4666-F9A7-ECEA-9495-0941841CF153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E72F4666-F9A7-ECEA-9495-0941841CF153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E72F4666-F9A7-ECEA-9495-0941841CF153}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1AB262B-7E80-433A-991E-48EFDCF01CF5}
+	EndGlobalSection
+EndGlobal

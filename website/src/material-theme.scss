@@ -1,0 +1,26 @@
+// YotsubaEngine Material Theme - Inspired by Godot Engine
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: (
+      brand-family: '"Inter", system-ui, -apple-system, sans-serif',
+      plain-family: '"Inter", system-ui, -apple-system, sans-serif',
+    ),
+    density: 0,
+  ));
+}
+
+body {
+  color-scheme: light dark;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  height: 100%;
+}

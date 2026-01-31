@@ -1,0 +1,143 @@
+/* Donations Button (Header) */
+.donate-nav-button {
+  background: linear-gradient(90deg, #ff3576 0%, #ff5f5f 100%) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(255, 53, 118, 0.15);
+  transition: background 0.2s;
+}
+.donate-nav-button:hover {
+  background: linear-gradient(90deg, #ff5f5f 0%, #ff3576 100%) !important;
+  color: #fff !important;
+}
+/* Navbar Styles */
+.navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 64px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px);
+  background: rgba(var(--mat-sys-primary-rgb), 0.95) !important;
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  padding-left: 4px;
+}
+
+.navbar-brand:hover {
+  opacity: 0.8;
+}
+
+.logo-image {
+  height: 100%;
+  max-height: 64px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--mat-sys-on-primary);
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: opacity 0.2s ease;
+  padding: 8px 0;
+  position: relative;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--mat-sys-on-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.download-nav-button {
+  background: var(--mat-sys-on-primary) !important;
+  color: var(--mat-sys-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Main Content */
+.main-content {
+  margin-top: 64px;
+}
+
+/* No margin when in community route (no navbar) */
+.main-content.community-active {
+  margin-top: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-nav {
+    display: none;
+  }
+
+  .navbar-content {
+    justify-content: center;
+  }
+}
+
+/* Make navbar padding-left small so logo sits almost flush to the left */
+.navbar-content {
+  padding-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .logo-image {
+    max-height: 44px;
+  }
+}
+
+/* Global App Styles */
+:host {
+  display: block;
+  min-height: 100vh;
+}

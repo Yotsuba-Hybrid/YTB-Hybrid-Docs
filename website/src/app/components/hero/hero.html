@@ -1,0 +1,74 @@
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">Tu experiencia Hybrid</h1>
+      <p class="hero-subtitle">Híbrido entre Engine y Framework</p>
+      <p class="hero-description">
+        Construido sobre MonoGame, Yotsuba combina la abstracción y las herramientas de un engine con la versatilidad de un framework de bajo nivel. Proporciona alto rendimiento y compatibilidad absoluta TODAS con las características modernas de C# y .NET en las principales plataformas. Además, soporta interoperabilidad a bajo nivel, reflexión, SignalR y las librerías NuGet más populares.
+      </p>
+      <div class="hero-buttons">
+        <button mat-raised-button color="primary" class="download-button">
+          <mat-icon>download</mat-icon>
+          Descargar v0.6.
+        </button>
+        <button mat-stroked-button (click)="scrollToFeatures()" class="learn-more-button">
+          Aprender más
+        </button>
+        <button mat-raised-button color="accent" (click)="goToCommunity()" class="community-button">
+          <mat-icon>groups</mat-icon>
+          Comunidad
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Código abierto</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">6+</span>
+          <span class="stat-label">Plataformas</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">C#</span>
+          <span class="stat-label">Moderno</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="engine-preview">
+        <div class="preview-bg">
+          <img src="screenshot engine (2).png" alt="engine screenshot 2" class="preview-image img-1">
+          <img src="screenshot engine (1).png" alt="engine screenshot 1" class="preview-image img-2">
+        </div>
+        <div class="preview-card">
+          <div class="preview-header">
+            <div class="preview-dot"></div>
+            <div class="preview-dot"></div>
+            <div class="preview-dot"></div>
+          </div>
+          <div class="preview-content">
+            <div class="code-line" style="color: orange;">[Script]</div>
+            <div class="code-line"><span class="keyword">public class</span> <span class="class-name"> Player</span> : <span class="class-name">BaseScript</span></div>
+            <div class="code-line">{{ '{' }}</div>
+            <div class="code-line indent1"><span class="keyword">protected override void</span> <span class="method"> Initialize</span>(<span class="keyword"></span>)</div>
+            <div class="code-line indent1">{{ '{' }}</div>
+            <div class="code-line indent2">GetSpriteComponent().IsVisible = true;</div>
+            <div class="code-line indent1">{{ '}' }}</div>
+            <div class="code-line">{{" "}}</div>
+            <div class="code-line">{{" "}}</div>
+            <div class="code-line indent1"><span class="keyword">protected override void</span> <span class="method"> Update</span>(<span class="keyword">GameTime</span> gametime)</div>
+            <div class="code-line indent1">{{ '{' }}</div>
+            <div class="code-line indent2">Vector2 newPosition = new Vector2(50, 100);</div>
+            <div class="code-line indent2">SetPosition(newPosition);</div>
+            <div class="code-line indent1">{{ '}' }}</div>
+            <div class="code-line">{{ '}' }}</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-background">
+    <div class="grid-pattern"></div>
+  </div>
+</section>

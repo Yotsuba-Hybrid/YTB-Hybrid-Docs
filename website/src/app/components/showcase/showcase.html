@@ -1,0 +1,34 @@
+<section class="showcase-section section">
+  <div class="container">
+    <h2 class="section-title">Ve YotsubaEngine en Acción</h2>
+    <p class="section-subtitle">
+      API simple y poderosa para desarrollo rápido
+    </p>
+    
+    <div class="showcase-grid">
+      @for (item of showcaseItems; track item.title; let i = $index) {
+        <mat-card class="showcase-card" [class.reverse]="i % 2 === 1">
+          <div class="showcase-content">
+            <h3 class="showcase-title">{{ item.title }}</h3>
+            <p class="showcase-description">{{ item.description }}</p>
+          </div>
+          <div class="showcase-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <span class="code-language">C#</span>
+            </div>
+            <div class="code-content">
+              @for (line of item.code; track line) {
+                <div class="code-line">{{ line }}</div>
+              }
+            </div>
+          </div>
+        </mat-card>
+      }
+    </div>
+  </div>
+</section>

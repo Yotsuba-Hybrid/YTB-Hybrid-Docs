@@ -1,0 +1,32 @@
+<div class="message-feed-container" #messageContainer>
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Cargando mensajes...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-container">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <p>Error al cargar los mensajes</p>
+    <button mat-button matButton="filled" color="primary" (click)="loadMessages()">Reintentar</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="messages-list">
+    <div *ngFor="let message of messages" class="message-item" (click)="onMessageClick($event)">
+      <div class="message-avatar">
+        <img [src]="getAvatarUrl(message)" alt="{{message.author.username}}"/>
+      </div>
+      <div class="message-content">
+        <div class="message-header">
+          <span class="message-author">{{ message.author.username }}</span>
+          <span class="message-timestamp">{{ formatTimestamp(message.timestamp) }}</span>
+        </div>
+        <div class="message-text" [innerHTML]="parseContent(message.content)"></div>
+      </div>
+    </div>
+    
+    <div *ngIf="messages.length === 0" class="no-messages">
+      <mat-icon class="no-messages-icon">chat_bubble_outline</mat-icon>
+      <p>No hay mensajes en este canal todavía</p>
+    </div>
+  </div>
+</div>

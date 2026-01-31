@@ -1,0 +1,136 @@
+<div class="community-container">
+  <!-- Header Desktop -->
+  <mat-toolbar class="community-header desktop-header" *ngIf="!isMobile">
+    <div class="header-content">
+      <div class="header-left">
+        <button mat-icon-button class="menu-toggle" (click)="sidenav.toggle()" aria-label="Abrir menú de navegación">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-button color="primary" (click)="goBack()" class="back-button">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Volver</span>
+        </button>
+        <mat-icon class="header-icon">groups</mat-icon>
+        <div class="header-title-section">
+          <h1 class="community-title">Comunidad Yotsuba Hybrid</h1>
+          <p class="community-subtitle">Conecta, colabora y aprende</p>
+        </div>
+      </div>
+      <span class="spacer"></span>
+      <div *ngIf="isAuthenticated" class="user-info">
+        <img [src]="getUserAvatarUrl()" [alt]="currentUser?.username" class="user-avatar" />
+        <div class="user-details">
+          <span class="username">{{ currentUser?.username }}</span>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-button" aria-label="Menú de usuario">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item color="warn" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar Sesión</span>
+          </button>
+        </mat-menu>
+      </div>
+      <button *ngIf="!isAuthenticated" mat-button color="primary" class="discord-login-button" (click)="login()">
+        <mat-icon>login</mat-icon>
+        <span>Iniciar Sesión con Discord</span>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <!-- Header Mobile -->
+  <mat-toolbar class="community-header mobile-header" *ngIf="isMobile">
+    <button mat-icon-button [matMenuTriggerFor]="mobileMenu" aria-label="Abrir menú de comunidad" class="mobile-menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="mobile-title">Comunidad</span>
+    <mat-menu #mobileMenu="matMenu" class="mobile-menu-panel">
+      <ng-container *ngIf="!isAuthenticated">
+        <button mat-menu-item (click)="login()">
+          <mat-icon>login</mat-icon>
+          <span>Iniciar Sesión con Discord</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="isAuthenticated">
+        <button mat-menu-item disabled>
+          <img [src]="getUserAvatarUrl()" [alt]="currentUser?.username" class="user-avatar mobile-avatar" />
+          <span>{{ currentUser?.username }}</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </ng-container>
+      <mat-divider></mat-divider>
+      <div class="mobile-channels-label">Canales</div>
+      <ng-container *ngFor="let category of channelList?.categories">
+        <div class="mobile-category-name">{{ category.name }}</div>
+        <button mat-menu-item *ngFor="let channel of category.channels" (click)="onChannelSelected(channel); $event.stopPropagation();">
+          <mat-icon>{{ channel.type === 2 ? 'volume_up' : 'chat' }}</mat-icon>
+          <span>{{ channel.name }}</span>
+        </button>
+      </ng-container>
+    </mat-menu>
+  </mat-toolbar>
+
+  <!-- Main Content -->
+  <mat-sidenav-container class="community-sidenav-container">
+    <!-- Sidebar -->
+    <mat-sidenav #sidenav [mode]="sidenavMode" [opened]="sidenavOpened" class="channel-sidebar">
+      <app-channel-list #channelList (channelSelected)="onChannelSelected($event)"></app-channel-list>
+    </mat-sidenav>
+
+    <!-- Content -->
+    <mat-sidenav-content class="main-content">
+      <div *ngIf="!selectedChannelId" class="no-channel-selected">
+        <img src="logo_only_sin_fondo.png" alt="Yotsuba Logo" class="community-logo" />
+        <mat-icon class="large-icon">forum</mat-icon>
+        <h2>Bienvenido a la Comunidad Yotsuba Hybrid</h2>
+        <p>Selecciona un canal de la barra lateral para comenzar a participar</p>
+        <button *ngIf="!isAuthenticated" mat-flat-button color="accent" (click)="login()" class="welcome-login-btn">
+          <mat-icon>login</mat-icon>
+          <span>Iniciar Sesión con Discord</span>
+        </button>
+        <div class="welcome-features">
+          <div class="feature-item">
+            <mat-icon>chat</mat-icon>
+            <span>Conversa con la comunidad</span>
+          </div>
+          <div class="feature-item">
+            <mat-icon>code</mat-icon>
+            <span>Comparte tu código</span>
+          </div>
+          <div class="feature-item">
+            <mat-icon>help</mat-icon>
+            <span>Obtén ayuda</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedChannelId" class="channel-content">
+        <app-message-feed [channelId]="selectedChannelId" [channel]="selectedChannel"></app-message-feed>
+        
+        <!-- Refresh button above message input for easy thumb access -->
+        <div class="refresh-button-container" *ngIf="isAuthenticated">
+          <button mat-raised-button color="primary" (click)="refreshMessages()" class="refresh-button" 
+                  aria-label="Verificar nuevos mensajes">
+            <mat-icon>refresh</mat-icon>
+            <span>Verificar Nuevos Mensajes</span>
+          </button>
+        </div>
+        
+        <app-message-input 
+          *ngIf="isAuthenticated" 
+          [channelId]="selectedChannelId">
+        </app-message-input>
+        <div *ngIf="!isAuthenticated" class="auth-message">
+          <p>Inicia sesión para enviar mensajes</p>
+          <button mat-flat-button color="accent" (click)="login()">
+            Iniciar Sesión con Discord
+          </button>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
