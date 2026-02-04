@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
 import { DiscordService } from '../../../services/discord.service';
-import { DiscordMessage, DiscordChannel } from '../../../models/discord.model';
+import { DiscordMessage, DiscordChannel, DiscordAttachment } from '../../../models/discord.model';
 import { MENU_AIM } from '@angular/cdk/menu';
 
 @Component({
@@ -173,6 +173,42 @@ export class MessageFeed implements OnChanges, AfterViewInit {
       const withLinks = content.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
       return this.sanitizer.sanitize(SecurityContext.HTML, withLinks) || content;
     }
+  }
+
+  trackByAttachmentId(index: number, attachment: DiscordAttachment): string {
+    return attachment.id || `${attachment.filename}-${index}`;
+  }
+
+  getAttachmentKind(attachment: DiscordAttachment): 'image' | 'video' | 'audio' | 'pdf' | 'file' {
+    const contentType = this.getAttachmentContentType(attachment);
+
+    if (contentType.startsWith('image/')) {
+      return 'image';
+    }
+    if (contentType.startsWith('video/')) {
+      return 'video';
+    }
+    if (contentType.startsWith('audio/')) {
+      return 'audio';
+    }
+    if (contentType === 'application/pdf' || this.hasFileExtension(attachment.filename, ['pdf'])) {
+      return 'pdf';
+    }
+
+    return 'file';
+  }
+
+  getAttachmentUrl(attachment: DiscordAttachment): string {
+    return attachment.proxy_url || attachment.url;
+  }
+
+  private getAttachmentContentType(attachment: DiscordAttachment): string {
+    return (attachment.original_content_type || attachment.content_type || '').toLowerCase();
+  }
+
+  private hasFileExtension(filename: string, extensions: string[]): boolean {
+    const lower = filename.toLowerCase();
+    return extensions.some((ext) => lower.endsWith(`.${ext}`));
   }
 
   onMessageClick(event: MouseEvent) {

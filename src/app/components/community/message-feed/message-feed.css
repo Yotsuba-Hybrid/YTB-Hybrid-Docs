@@ -124,6 +124,47 @@
   word-wrap: break-word;
 }
 
+.message-attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.attachment-item img,
+.attachment-item video {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container-highest);
+}
+
+.attachment-item video {
+  max-height: 420px;
+}
+
+.attachment-item audio {
+  width: 100%;
+}
+
+.attachment-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: var(--mat-sys-surface-container-highest);
+  color: var(--mat-sys-primary);
+  text-decoration: none;
+  border: 1px solid var(--mat-sys-outline-variant);
+  width: fit-content;
+}
+
+.attachment-file:hover {
+  border-color: var(--mat-sys-primary);
+  background-color: var(--mat-sys-primary-container);
+}
+
 /* Markdown styling */
 .message-text :deep(h1),
 .message-text :deep(h2),

@@ -21,6 +21,40 @@
           <span class="message-timestamp">{{ formatTimestamp(message.timestamp) }}</span>
         </div>
         <div class="message-text" [innerHTML]="parseContent(message.content)"></div>
+        <div class="message-attachments" *ngIf="message.attachments?.length">
+          <div class="attachment-item" *ngFor="let attachment of message.attachments; trackBy: trackByAttachmentId">
+            <ng-container [ngSwitch]="getAttachmentKind(attachment)">
+              <img
+                *ngSwitchCase="'image'"
+                [src]="getAttachmentUrl(attachment)"
+                alt="{{attachment.filename}}"
+                loading="lazy"
+              />
+              <video *ngSwitchCase="'video'" controls [src]="getAttachmentUrl(attachment)"></video>
+              <audio *ngSwitchCase="'audio'" controls [src]="getAttachmentUrl(attachment)"></audio>
+              <a
+                *ngSwitchCase="'pdf'"
+                class="attachment-file"
+                [href]="getAttachmentUrl(attachment)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <mat-icon>picture_as_pdf</mat-icon>
+                <span>{{ attachment.filename }}</span>
+              </a>
+              <a
+                *ngSwitchDefault
+                class="attachment-file"
+                [href]="getAttachmentUrl(attachment)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <mat-icon>attach_file</mat-icon>
+                <span>{{ attachment.filename }}</span>
+              </a>
+            </ng-container>
+          </div>
+        </div>
       </div>
     </div>
     

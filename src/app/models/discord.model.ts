@@ -26,8 +26,29 @@ export interface DiscordMessage {
     avatar?: string;
   };
   content: string;
+  attachments?: DiscordAttachment[];
+  embeds?: DiscordEmbed[];
   timestamp: string;
   edited_timestamp?: string;
+}
+
+export interface DiscordAttachment {
+  id: string;
+  filename: string;
+  size: number;
+  url: string;
+  proxy_url?: string;
+  width?: number;
+  height?: number;
+  content_type?: string;
+  original_content_type?: string;
+}
+
+export interface DiscordEmbed {
+  type?: string;
+  url?: string;
+  title?: string;
+  description?: string;
 }
 
 export interface AuthResponse {
