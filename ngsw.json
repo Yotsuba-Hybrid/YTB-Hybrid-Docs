@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1770650422903,
+  "timestamp": 1770650596752,
   "index": "/YTB-Hybrid-Docs/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/YTB-Hybrid-Docs/favicon.ico",
         "/YTB-Hybrid-Docs/index.html",
-        "/YTB-Hybrid-Docs/main-3OY5ZU2V.js",
+        "/YTB-Hybrid-Docs/main-ZK7NMP76.js",
         "/YTB-Hybrid-Docs/manifest.webmanifest",
         "/YTB-Hybrid-Docs/styles-RPOVWWQU.css"
       ],
@@ -70,9 +70,9 @@
     "/YTB-Hybrid-Docs/icons/icon-512x512.png": "5fa4c8f0ed4a7c201861a0d3bcdefacd52a4d3a0",
     "/YTB-Hybrid-Docs/icons/icon-72x72.png": "b707d17fe70e882ebfc658d3681943e5428ceab5",
     "/YTB-Hybrid-Docs/icons/icon-96x96.png": "570fcf5252caae1c39a8fb43decbbf38ea5ae622",
-    "/YTB-Hybrid-Docs/index.html": "303d28a3974927fd15dcb3db64704d096e4501b0",
+    "/YTB-Hybrid-Docs/index.html": "c249929979d2f73620434d10755f9fb8ebf72175",
     "/YTB-Hybrid-Docs/logo_only_sin_fondo.png": "54d266d7dac7b05fc68bc07b5e707efadb362c62",
-    "/YTB-Hybrid-Docs/main-3OY5ZU2V.js": "34c02c4191f75267f03c565b5d89c2b83e990e3c",
+    "/YTB-Hybrid-Docs/main-ZK7NMP76.js": "3fdc8edcceb0ef460b6274fcb7f0465871394b97",
     "/YTB-Hybrid-Docs/manifest.webmanifest": "3feeb7cb90b819b2584a7a8646c8b316f58f3537",
     "/YTB-Hybrid-Docs/screenshot engine (1).png": "ce8a02e129312e47aac558cb53d7d7c2362f0e03",
     "/YTB-Hybrid-Docs/screenshot engine (2).png": "331c3b8b1c0987d9c6f64e2f7bb015b0856e1251",
