@@ -5,8 +5,8 @@
   "theme_color": "#4caf50",
   "background_color": "#121212",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "scope": "/YTB-Hybrid-Docs/",
+  "start_url": "/YTB-Hybrid-Docs/",
   "orientation": "any",
   "icons": [
     {
