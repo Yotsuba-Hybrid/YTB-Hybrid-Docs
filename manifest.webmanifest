@@ -1,12 +1,12 @@
 {
-  "name": "YotsubaEngine - Motor de Videojuegos Multiplataforma",
+  "name": "Yotsuba Hybrid - Motor de Videojuegos Multiplataforma",
   "short_name": "YotsubaEngine",
   "description": "Motor de videojuegos 2D/3D multiplataforma construido sobre MonoGame. Alto rendimiento, AOT-compatible, y C# moderno.",
   "theme_color": "#4caf50",
   "background_color": "#121212",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "./",
+  "start_url": "./",
   "orientation": "any",
   "icons": [
     {
