@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-production-api-url.com/api',
+  apiUrl: 'https://yotsuba-001-site1.stempurl.com/api',
   discord: {
-    clientId: 'DISCORD_CLIENT_ID',
-    redirectUri: 'https://myengine-official.github.io/YotsubaEngine/#/community/callback'
+    clientId: '1466265175681269937',
+    redirectUri: 'https://yotsuba-hybrid.github.io/YTB-Hybrid-Docs/community/callback'
   }
 };

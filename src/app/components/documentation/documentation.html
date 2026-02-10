@@ -1,0 +1,124 @@
+<div class="documentation-container">
+  <!-- Sidebar Navigation -->
+  <mat-sidenav-container class="documentation-sidenav-container">
+    <mat-sidenav #sidenav [mode]="sidenavMode" [opened]="sidenavOpened" class="documentation-sidebar">
+      <div class="sidebar-brand">
+        <mat-icon class="brand-icon">auto_stories</mat-icon>
+        <div class="brand-text">
+          <span class="brand-title">Docs</span>
+          <span class="brand-subtitle">Yotsuba Hybrid</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">LEARN</span>
+        <span class="section-label-line"></span>
+      </div>
+
+      <div *ngIf="loading" class="sidebar-loading">
+        <mat-spinner diameter="24"></mat-spinner>
+        <span>Cargando...</span>
+      </div>
+
+      <div *ngIf="error && !loading" class="sidebar-error">
+        <mat-icon>warning_amber</mat-icon>
+        <span>Error al cargar</span>
+        <button mat-stroked-button (click)="loadChannels()">Reintentar</button>
+      </div>
+
+      <div *ngIf="!loading && !error && channels.length === 0" class="sidebar-empty">
+        <mat-icon>folder_open</mat-icon>
+        <span>Sin canales disponibles</span>
+      </div>
+
+      <nav *ngIf="!loading && !error && channels.length > 0" class="sidebar-nav">
+        <a
+          class="nav-item"
+          *ngFor="let channel of channels; trackBy: trackByChannelId"
+          [class.active]="channel.id === selectedChannelId"
+          (click)="selectChannel(channel)"
+        >
+          <span class="nav-indicator"></span>
+          <mat-icon class="nav-icon">article</mat-icon>
+          <span class="nav-label">{{ channel.name }}</span>
+        </a>
+      </nav>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content class="documentation-content">
+      <!-- Top Bar -->
+      <div class="content-topbar">
+        <button
+          *ngIf="isMobile"
+          mat-icon-button
+          (click)="sidenav.toggle()"
+          class="topbar-menu-btn"
+          aria-label="Abrir navegacion"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="topbar-breadcrumb" *ngIf="selectedChannel">
+          <span class="breadcrumb-root">Docs</span>
+          <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+          <span class="breadcrumb-current">{{ selectedChannel.name }}</span>
+        </div>
+        <div class="topbar-breadcrumb" *ngIf="!selectedChannel">
+          <span class="breadcrumb-root">Documentacion</span>
+        </div>
+      </div>
+
+      <!-- Welcome State -->
+      <div *ngIf="!selectedChannelId && !loading" class="welcome-state">
+        <div class="welcome-card">
+          <div class="welcome-icon-wrapper">
+            <mat-icon class="welcome-icon">auto_stories</mat-icon>
+          </div>
+          <h2 class="welcome-title">Documentacion de Yotsuba Hybrid</h2>
+          <p class="welcome-description">
+            Selecciona un tema de la barra lateral para comenzar a explorar la documentacion del engine.
+          </p>
+          <div class="welcome-hints">
+            <div class="hint-item">
+              <mat-icon>menu_book</mat-icon>
+              <span>Guias paso a paso</span>
+            </div>
+            <div class="hint-item">
+              <mat-icon>code</mat-icon>
+              <span>Ejemplos de codigo</span>
+            </div>
+            <div class="hint-item">
+              <mat-icon>architecture</mat-icon>
+              <span>Arquitectura del engine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article Content -->
+      <div *ngIf="selectedChannelId" class="article-wrapper">
+        <div class="article-hero">
+          <div class="article-hero-content">
+            <div class="article-hero-icon">
+              <mat-icon>article</mat-icon>
+            </div>
+            <div class="article-hero-text">
+              <h1 class="article-title">{{ selectedChannel?.name }}</h1>
+              <p class="article-subtitle">Documentacion del canal</p>
+            </div>
+          </div>
+          <div class="article-hero-decoration"></div>
+        </div>
+
+        <div class="article-body">
+          <app-message-feed
+            [channelId]="selectedChannelId"
+            [channel]="selectedChannel"
+            [displayMode]="'docs'"
+          ></app-message-feed>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

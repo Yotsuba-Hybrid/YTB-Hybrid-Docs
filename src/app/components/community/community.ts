@@ -14,6 +14,7 @@ import { ChannelList } from './channel-list/channel-list';
 import { MessageFeed } from './message-feed/message-feed';
 import { MessageInput } from './message-input/message-input';
 import { Location } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-community',
@@ -28,8 +29,9 @@ import { Location } from '@angular/common';
     MatDividerModule,
     ChannelList,
     MessageFeed,
-    MessageInput
-  ],
+    MessageInput,
+    RouterLink
+],
   templateUrl: './community.html',
   styleUrls: ['./community.css']
 })
@@ -104,9 +106,7 @@ export class Community implements OnInit, OnDestroy {
     this.discordService.logout();
   }
 
-  goBack() {
-    this.location.back();
-  }
+  
 
   getUserAvatarUrl(): string {
     if (!this.currentUser) return '';

@@ -29,6 +29,11 @@
                 "input": "public"
               },
               {
+                "glob": "manifest.webmanifest",
+                "input": ".",
+                "output": "/"
+              },
+              {
                 "glob": ".nojekyll",
                 "input": "src",
                 "output": "/"

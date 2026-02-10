@@ -3,10 +3,20 @@
   <mat-toolbar class="community-header desktop-header" *ngIf="!isMobile">
     <div class="header-content">
       <div class="header-left">
-        <button mat-icon-button class="menu-toggle" (click)="sidenav.toggle()" aria-label="Abrir menú de navegación">
+        <button
+          mat-icon-button
+          class="menu-toggle"
+          (click)="sidenav.toggle()"
+          aria-label="Abrir menú de navegación"
+        >
           <mat-icon>menu</mat-icon>
         </button>
-        <button mat-button color="primary" (click)="goBack()" class="back-button">
+        <button
+          mat-button
+          color="primary"
+          routerLink="/"
+          class="back-button"
+        >
           <mat-icon>arrow_back</mat-icon>
           <span>Volver</span>
         </button>
@@ -18,11 +28,16 @@
       </div>
       <span class="spacer"></span>
       <div *ngIf="isAuthenticated" class="user-info">
-        <img [src]="getUserAvatarUrl()" [alt]="currentUser?.username" class="user-avatar" />
+        <img [src]="getUserAvatarUrl()" alt="{{currentUser?.username}}" class="user-avatar" />
         <div class="user-details">
           <span class="username">{{ currentUser?.username }}</span>
         </div>
-        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-button" aria-label="Menú de usuario">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="userMenu"
+          class="user-menu-button"
+          aria-label="Menú de usuario"
+        >
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #userMenu="matMenu">
@@ -32,7 +47,13 @@
           </button>
         </mat-menu>
       </div>
-      <button *ngIf="!isAuthenticated" mat-button color="primary" class="discord-login-button" (click)="login()">
+      <button
+        *ngIf="!isAuthenticated"
+        mat-button
+        color="primary"
+        class="discord-login-button"
+        (click)="login()"
+      >
         <mat-icon>login</mat-icon>
         <span>Iniciar Sesión con Discord</span>
       </button>
@@ -41,7 +62,12 @@
 
   <!-- Header Mobile -->
   <mat-toolbar class="community-header mobile-header" *ngIf="isMobile">
-    <button mat-icon-button [matMenuTriggerFor]="mobileMenu" aria-label="Abrir menú de comunidad" class="mobile-menu-button">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="mobileMenu"
+      aria-label="Abrir menú de comunidad"
+      class="mobile-menu-button"
+    >
       <mat-icon>menu</mat-icon>
     </button>
     <span class="mobile-title">Comunidad</span>
@@ -54,7 +80,11 @@
       </ng-container>
       <ng-container *ngIf="isAuthenticated">
         <button mat-menu-item disabled>
-          <img [src]="getUserAvatarUrl()" [alt]="currentUser?.username" class="user-avatar mobile-avatar" />
+          <img
+            [src]="getUserAvatarUrl()"
+            alt="{{currentUser?.username}}"
+            class="user-avatar mobile-avatar"
+          />
           <span>{{ currentUser?.username }}</span>
         </button>
         <button mat-menu-item (click)="logout()">
@@ -66,7 +96,11 @@
       <div class="mobile-channels-label">Canales</div>
       <ng-container *ngFor="let category of channelList?.categories">
         <div class="mobile-category-name">{{ category.name }}</div>
-        <button mat-menu-item *ngFor="let channel of category.channels" (click)="onChannelSelected(channel); $event.stopPropagation();">
+        <button
+          mat-menu-item
+          *ngFor="let channel of category.channels"
+          (click)="onChannelSelected(channel); $event.stopPropagation()"
+        >
           <mat-icon>{{ channel.type === 2 ? 'volume_up' : 'chat' }}</mat-icon>
           <span>{{ channel.name }}</span>
         </button>
@@ -78,7 +112,10 @@
   <mat-sidenav-container class="community-sidenav-container">
     <!-- Sidebar -->
     <mat-sidenav #sidenav [mode]="sidenavMode" [opened]="sidenavOpened" class="channel-sidebar">
-      <app-channel-list #channelList (channelSelected)="onChannelSelected($event)"></app-channel-list>
+      <app-channel-list
+        #channelList
+        (channelSelected)="onChannelSelected($event)"
+      ></app-channel-list>
     </mat-sidenav>
 
     <!-- Content -->
@@ -88,7 +125,13 @@
         <mat-icon class="large-icon">forum</mat-icon>
         <h2>Bienvenido a la Comunidad Yotsuba Hybrid</h2>
         <p>Selecciona un canal de la barra lateral para comenzar a participar</p>
-        <button *ngIf="!isAuthenticated" mat-flat-button color="accent" (click)="login()" class="welcome-login-btn">
+        <button
+          *ngIf="!isAuthenticated"
+          mat-flat-button
+          color="accent"
+          (click)="login()"
+          class="welcome-login-btn"
+        >
           <mat-icon>login</mat-icon>
           <span>Iniciar Sesión con Discord</span>
         </button>
@@ -109,20 +152,26 @@
       </div>
 
       <div *ngIf="selectedChannelId" class="channel-content">
-        <app-message-feed [channelId]="selectedChannelId" [channel]="selectedChannel"></app-message-feed>
-        
+        <app-message-feed
+          [channelId]="selectedChannelId"
+          [channel]="selectedChannel"
+        ></app-message-feed>
+
         <!-- Refresh button above message input for easy thumb access -->
         <div class="refresh-button-container" *ngIf="isAuthenticated">
-          <button mat-raised-button color="primary" (click)="refreshMessages()" class="refresh-button" 
-                  aria-label="Verificar nuevos mensajes">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="refreshMessages()"
+            class="refresh-button"
+            aria-label="Verificar nuevos mensajes"
+          >
             <mat-icon>refresh</mat-icon>
             <span>Verificar Nuevos Mensajes</span>
           </button>
         </div>
-        
-        <app-message-input 
-          *ngIf="isAuthenticated" 
-          [channelId]="selectedChannelId">
+
+        <app-message-input *ngIf="isAuthenticated" [channelId]="selectedChannelId">
         </app-message-input>
         <div *ngIf="!isAuthenticated" class="auth-message">
           <p>Inicia sesión para enviar mensajes</p>

@@ -15,7 +15,7 @@ export class Footer {
   socialLinks = [
     { icon: 'code', name: 'GitHub', url: 'https://github.com/MyEngine-Official/YotsubaEngine' },
     { icon: 'chat', name: 'Discord', url: '#' },
-    { icon: 'article', name: 'Docs', url: '#' }
+    { icon: 'article', name: 'Docs', url: '/documentation' }
   ];
 
   links = {
@@ -26,7 +26,7 @@ export class Footer {
       { label: 'Changelog', url: '#' }
     ],
     developers: [
-      { label: 'Documentación', url: '#' },
+      { label: 'Documentación', url: '/documentation' },
       { label: 'API Reference', url: '#' },
       { label: 'Tutoriales', url: '#' },
       { label: 'Ejemplos', url: '#' }

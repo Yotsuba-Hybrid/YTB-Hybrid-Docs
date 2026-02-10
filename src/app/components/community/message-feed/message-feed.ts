@@ -24,6 +24,7 @@ import { MENU_AIM } from '@angular/cdk/menu';
 export class MessageFeed implements OnChanges, AfterViewInit {
   @Input() channelId!: string;
   @Input() channel?: DiscordChannel;
+  @Input() displayMode: 'chat' | 'docs' = 'chat';
   @ViewChild('messageContainer') messageContainer?: ElementRef;
   
   messages: DiscordMessage[] = [];

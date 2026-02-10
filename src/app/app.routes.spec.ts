@@ -40,8 +40,18 @@ describe('App Routing', () => {
     expect(location.path()).toBe('/community/callback');
   });
 
-  it('should have three routes configured', () => {
-    expect(routes.length).toBe(3);
+  it('should navigate to documentation route', async () => {
+    await router.navigate(['/documentation']);
+    expect(location.path()).toBe('/documentation');
+  });
+
+  it('should navigate to documentation channel route', async () => {
+    await router.navigate(['/documentation', 'setup']);
+    expect(location.path()).toBe('/documentation/setup');
+  });
+
+  it('should have five routes configured', () => {
+    expect(routes.length).toBe(5);
   });
 
   it('should have home route at root', () => {
@@ -54,5 +64,17 @@ describe('App Routing', () => {
     const communityRoute = routes.find(r => r.path === 'community');
     expect(communityRoute).toBeDefined();
     expect(communityRoute?.component).toBeDefined();
+  });
+
+  it('should have documentation route', () => {
+    const documentationRoute = routes.find(r => r.path === 'documentation');
+    expect(documentationRoute).toBeDefined();
+    expect(documentationRoute?.component).toBeDefined();
+  });
+
+  it('should have documentation channel route', () => {
+    const documentationRoute = routes.find(r => r.path === 'documentation/:channel');
+    expect(documentationRoute).toBeDefined();
+    expect(documentationRoute?.component).toBeDefined();
   });
 });
