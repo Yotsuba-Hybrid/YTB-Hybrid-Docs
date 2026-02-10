@@ -7,7 +7,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
 import { DiscordService } from '../../../services/discord.service';
 import { DiscordMessage, DiscordChannel, DiscordAttachment } from '../../../models/discord.model';
-import { MENU_AIM } from '@angular/cdk/menu';
+import { YouTubeEmbed } from '../../shared/youtube-embed/youtube-embed';
+import { extractYouTubeVideoIds } from '../../../utils/youtube.utils';
 
 @Component({
   selector: 'app-message-feed',
@@ -16,7 +17,8 @@ import { MENU_AIM } from '@angular/cdk/menu';
     CommonModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    YouTubeEmbed
   ],
   templateUrl: './message-feed.html',
   styleUrls: ['./message-feed.css']
@@ -31,6 +33,7 @@ export class MessageFeed implements OnChanges, AfterViewInit {
   loading = true;
   error = false;
   isLearnChannel = false;
+  private youtubeIdsCache = new Map<string, string[]>();
 
   constructor(
     private discordService: DiscordService,
@@ -61,6 +64,7 @@ export class MessageFeed implements OnChanges, AfterViewInit {
   loadMessages() {
     this.loading = true;
     this.error = false;
+    this.youtubeIdsCache.clear();
     
     this.discordService.getChannelMessages(this.channelId).subscribe({
       next: (messages: any) => {
@@ -221,5 +225,12 @@ export class MessageFeed implements OnChanges, AfterViewInit {
         this.scrollToTag(tag);
       }
     }
+  }
+
+  getYouTubeIds(message: DiscordMessage): string[] {
+    if (!this.youtubeIdsCache.has(message.id)) {
+      this.youtubeIdsCache.set(message.id, extractYouTubeVideoIds(message.content));
+    }
+    return this.youtubeIdsCache.get(message.id)!;
   }
 }

@@ -55,6 +55,12 @@
             </ng-container>
           </div>
         </div>
+        <div class="youtube-embeds" *ngIf="getYouTubeIds(message).length > 0">
+          <app-youtube-embed
+            *ngFor="let videoId of getYouTubeIds(message)"
+            [videoId]="videoId"
+          ></app-youtube-embed>
+        </div>
       </div>
     </div>
     

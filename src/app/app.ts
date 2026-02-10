@@ -23,12 +23,18 @@ import { MatIconModule } from '@angular/material/icon';
 export class App {
   title = 'YotsubaEngine';
   isCommunityRoute = false;
-  
+  mobileMenuOpen = false;
+
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isCommunityRoute = event.urlAfterRedirects.startsWith('/community');
+        this.mobileMenuOpen = false;
       }
     });
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
   }
 }

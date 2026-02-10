@@ -1,0 +1,31 @@
+<section class="yt-showcase-section section">
+  <div class="container">
+    <h2 class="section-title">Videos y Tutoriales</h2>
+    <p class="section-subtitle">
+      Aprende Yotsuba Hybrid con nuestros videos oficiales
+    </p>
+
+    <div class="yt-showcase-grid">
+      @for (video of featuredVideos; track video.id) {
+        <div class="yt-showcase-card">
+          <app-youtube-embed [videoId]="video.id"></app-youtube-embed>
+          <h3 class="yt-video-title">{{ video.title }}</h3>
+        </div>
+      }
+    </div>
+
+    <div class="yt-channel-cta">
+      <a
+        [href]="channelUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        mat-raised-button
+        color="primary"
+        class="yt-channel-button"
+      >
+        <mat-icon>smart_display</mat-icon>
+        Ver Canal de YouTube
+      </a>
+    </div>
+  </div>
+</section>

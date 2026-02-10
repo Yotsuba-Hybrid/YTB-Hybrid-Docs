@@ -166,6 +166,13 @@
   margin-top: 10px;
 }
 
+.youtube-embeds {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
 .attachment-item img,
 .attachment-item video {
   max-width: 100%;

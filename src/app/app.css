@@ -28,6 +28,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  padding-left: 8px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -109,9 +110,73 @@
   margin-top: 64px;
 }
 
-/* No margin when in community route (no navbar) */
 .main-content.community-active {
   margin-top: 0;
+}
+
+/* Mobile Hamburger */
+.mobile-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--mat-sys-on-primary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.mobile-hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: mobileOverlayIn 0.2s ease;
+}
+
+.mobile-nav-menu {
+  background: var(--mat-sys-surface-container);
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: mobileMenuSlideDown 0.25s ease-out;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  color: var(--mat-sys-on-surface);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  background: var(--mat-sys-surface-container-high);
+}
+
+.mobile-nav-link.donate {
+  color: #ff3576;
+}
+
+@keyframes mobileOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes mobileMenuSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive */
@@ -121,16 +186,15 @@
   }
 
   .navbar-content {
+    justify-content: space-between;
+  }
+
+  .mobile-hamburger {
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
-}
 
-/* Make navbar padding-left small so logo sits almost flush to the left */
-.navbar-content {
-  padding-left: 8px;
-}
-
-@media (max-width: 768px) {
   .logo-image {
     max-height: 44px;
   }

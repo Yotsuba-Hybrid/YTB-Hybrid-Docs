@@ -420,8 +420,16 @@
 }
 
 @media (max-width: 640px) {
+  .hero-content {
+    padding: 40px 16px;
+  }
+
   .hero-title {
     font-size: 2.5rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
   }
 
   .hero-buttons {
@@ -429,7 +437,8 @@
   }
 
   .download-button,
-  .learn-more-button {
+  .learn-more-button,
+  .community-button {
     width: 100%;
   }
 

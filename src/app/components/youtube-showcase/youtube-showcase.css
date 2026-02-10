@@ -1,0 +1,56 @@
+.yt-showcase-section {
+  background: linear-gradient(180deg, var(--mat-sys-surface-container) 0%, var(--mat-sys-surface) 100%);
+}
+
+.yt-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.yt-showcase-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.yt-showcase-card app-youtube-embed {
+  width: 100%;
+}
+
+.yt-showcase-card ::ng-deep .yt-embed-wrapper {
+  max-width: 100%;
+}
+
+.yt-video-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--mat-sys-on-surface);
+  line-height: 1.4;
+}
+
+.yt-channel-cta {
+  text-align: center;
+}
+
+.yt-channel-button {
+  height: 56px !important;
+  padding: 0 32px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.yt-channel-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+@media (max-width: 640px) {
+  .yt-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
