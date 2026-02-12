@@ -12,15 +12,6 @@
   padding: 40px 48px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .loading-container,
 .error-container {
   display: flex;
@@ -346,10 +337,6 @@
   font-weight: 600;
 }
 
-.message-text :deep(em) {
-  font-style: italic;
-}
-
 .no-messages {
   display: flex;
   flex-direction: column;
@@ -357,7 +344,6 @@
   justify-content: center;
   height: 300px;
   color: var(--mat-sys-on-surface-variant);
-  animation: fadeIn 0.5s ease-in;
 }
 
 .no-messages-icon {
@@ -368,19 +354,38 @@
   color: var(--mat-sys-primary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .no-messages-icon {
-    animation: bounce 2s ease-in-out infinite;
-  }
+/* Load older messages */
+.load-older-container {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 16px 0;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+.load-older-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mat-sys-primary);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 6px 20px;
+  background: var(--mat-sys-surface-container);
+  border: 1px dashed var(--mat-sys-outline-variant);
+  transition: all 0.2s ease;
+}
+
+.load-older-button:hover:not([disabled]) {
+  background: var(--mat-sys-primary-container);
+  border-color: var(--mat-sys-primary);
+}
+
+.load-older-button[disabled] {
+  opacity: 0.6;
+}
+
+.older-spinner {
+  display: inline-block;
 }
 
 /* Scrollbar styling */
@@ -451,19 +456,4 @@
   border-color: var(--mat-sys-tertiary) !important;
   background: linear-gradient(135deg, var(--mat-sys-tertiary-container), var(--mat-sys-primary-container)) !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .message-item.highlighted {
-    animation: highlight-pulse 0.5s ease-in-out;
-  }
-}
-
-@keyframes highlight-pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
 }

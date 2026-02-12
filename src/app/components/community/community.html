@@ -171,7 +171,8 @@
           </button>
         </div>
 
-        <app-message-input *ngIf="isAuthenticated" [channelId]="selectedChannelId">
+        <app-message-input *ngIf="isAuthenticated" [channelId]="selectedChannelId"
+          (messageSent)="onMessageSent()">
         </app-message-input>
         <div *ngIf="!isAuthenticated" class="auth-message">
           <p>Inicia sesión para enviar mensajes</p>

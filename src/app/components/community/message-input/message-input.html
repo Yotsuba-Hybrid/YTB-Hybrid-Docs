@@ -3,28 +3,29 @@
     <mat-icon class="bot-icon">smart_toy</mat-icon>
     <span>El mensaje será enviado por Yotsuba Bot en tu nombre.</span>
   </div>
-  
-  <div class="input-wrapper">
-    <mat-form-field class="message-field" appearance="outline">
-      <textarea 
-        matInput
-        [(ngModel)]="messageContent"
-        (keydown)="onKeyDown($event)"
-        placeholder="Escribe un mensaje..."
-        rows="1"
-        [disabled]="sending"
-        class="message-textarea">
-      </textarea>
-    </mat-form-field>
-    
-    <button 
-      mat-button 
-      matButton="filled" 
-      color="primary"
+
+  <div class="input-wrapper" [class.focused]="inputFocused">
+    <textarea
+      #messageTextarea
+      class="message-textarea"
+      [(ngModel)]="messageContent"
+      (keydown)="onKeyDown($event)"
+      (focus)="inputFocused = true"
+      (blur)="inputFocused = false"
+      (input)="autoResize()"
+      placeholder="Escribe un mensaje..."
+      rows="1"
+      [disabled]="sending">
+    </textarea>
+
+    <button
+      class="send-button"
       (click)="sendMessage()"
       [disabled]="!messageContent.trim() || sending"
-      class="send-button">
-      <mat-icon>send</mat-icon>
+      [class.ready]="messageContent.trim() && !sending"
+      aria-label="Enviar mensaje">
+      <mat-icon *ngIf="!sending">send</mat-icon>
+      <mat-spinner *ngIf="sending" diameter="20"></mat-spinner>
     </button>
   </div>
 </div>

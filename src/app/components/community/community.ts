@@ -98,6 +98,12 @@ export class Community implements OnInit, OnDestroy {
     }
   }
 
+  onMessageSent() {
+    if (this.messageFeed) {
+      this.messageFeed.loadMessages();
+    }
+  }
+
   login() {
     window.location.href = this.discordService.getDiscordAuthUrl();
   }

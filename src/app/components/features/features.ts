@@ -25,12 +25,12 @@ export class Features {
     {
       icon: 'speed',
       title: 'Alto Rendimiento',
-      description: 'Optimizado para AOT compilation. Minimiza allocaciones y maximiza FPS en todas las plataformas.'
+      description: 'Optimizado para generar juegos de altísimo rendimiento. Minimiza allocaciones y maximiza FPS en todas las plataformas.'
     },
     {
       icon: 'code',
       title: 'C# Moderno',
-      description: 'Usa las últimas características de C# 12+ con hot-reload para desarrollo rápido e iterativo.'
+      description: 'Usa las últimas características de C# 14+ con hot-reload para desarrollo rápido e iterativo.'
     },
     {
       icon: 'view_in_ar',
@@ -40,27 +40,27 @@ export class Features {
     {
       icon: 'layers',
       title: 'Sistema de Escenas',
-      description: 'Gestiona tus juegos con escenas serializables en formato JSON (.ytb) fácil de usar.'
+      description: 'Crea escenas y niveles fácilmente con un sistema de gestión de escenas flexible y potente.'
     },
     {
       icon: 'gamepad',
-      title: 'Física 2D',
-      description: 'Motor de física 2D integrado con colisiones, triggers y física realista para tus juegos.'
+      title: 'Collisiones 2D',
+      description: 'Motor de Collisiones 2D integrado para agilizar tus juegos.'
     },
     {
       icon: 'animation',
       title: 'Animaciones',
-      description: 'Sistema completo de animaciones con soporte para sprites, transiciones y estados.'
+      description: 'Sistema robusto para las animaciones de tus sprites animaciones.'
     },
     {
       icon: 'grid_on',
       title: 'TileMaps',
-      description: 'Editor y runtime para tilemaps con soporte para múltiples capas y colisiones.'
+      description: 'La forma estandar en Yotsuba de crear niveles 2D es con Tiled editor. Crea tus niveles y exportalos.'
     },
     {
       icon: 'edit',
       title: 'Editor Integrado',
-      description: 'Editor visual potente con ImGui para diseñar niveles, editar propiedades y debuggear en tiempo real.'
+      description: 'Editor visual potente con ImGui para diseñar niveles, editar propiedades, y agilizar tu desarrollo.'
     }
   ];
 }

@@ -11,7 +11,20 @@
   </div>
 
   <div *ngIf="!loading && !error" class="messages-list">
-    <div *ngFor="let message of messages" class="message-item" [class.docs-mode]="displayMode === 'docs'" (click)="onMessageClick($event)">
+    <!-- Load older messages button -->
+    <div class="load-older-container" *ngIf="hasMoreMessages && messages.length > 0">
+      <button
+        mat-button
+        class="load-older-button"
+        (click)="loadOlderMessages()"
+        [disabled]="loadingOlder">
+        <mat-spinner *ngIf="loadingOlder" diameter="18" class="older-spinner"></mat-spinner>
+        <mat-icon *ngIf="!loadingOlder">expand_less</mat-icon>
+        <span>{{ loadingOlder ? 'Cargando...' : 'Cargar mensajes anteriores' }}</span>
+      </button>
+    </div>
+
+    <div *ngFor="let message of messages; trackBy: trackByMessageId" class="message-item" [class.docs-mode]="displayMode === 'docs'" (click)="onMessageClick($event)">
       <div class="message-avatar" *ngIf="displayMode !== 'docs'">
         <img [src]="getAvatarUrl(message)" alt="{{message.author.username}}"/>
       </div>
@@ -63,7 +76,7 @@
         </div>
       </div>
     </div>
-    
+
     <div *ngIf="messages.length === 0" class="no-messages">
       <mat-icon class="no-messages-icon">{{ displayMode === 'docs' ? 'article' : 'chat_bubble_outline' }}</mat-icon>
       <p>

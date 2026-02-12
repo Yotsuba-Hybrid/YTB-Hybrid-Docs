@@ -28,11 +28,14 @@ export class MessageFeed implements OnChanges, AfterViewInit {
   @Input() channel?: DiscordChannel;
   @Input() displayMode: 'chat' | 'docs' = 'chat';
   @ViewChild('messageContainer') messageContainer?: ElementRef;
-  
+
   messages: DiscordMessage[] = [];
   loading = true;
+  loadingOlder = false;
   error = false;
   isLearnChannel = false;
+  hasMoreMessages = true;
+  private readonly PAGE_SIZE = 50;
   private youtubeIdsCache = new Map<string, string[]>();
 
   constructor(
@@ -49,6 +52,8 @@ export class MessageFeed implements OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['channelId'] && this.channelId) {
+      this.messages = [];
+      this.hasMoreMessages = true;
       this.loadMessages();
     }
     if (changes['channel'] && this.channel) {
@@ -65,51 +70,105 @@ export class MessageFeed implements OnChanges, AfterViewInit {
     this.loading = true;
     this.error = false;
     this.youtubeIdsCache.clear();
-    
-    this.discordService.getChannelMessages(this.channelId).subscribe({
+
+    this.discordService.getChannelMessages(this.channelId, this.PAGE_SIZE).subscribe({
       next: (messages: any) => {
         this.messages = messages.reverse(); // Reverse to show oldest first
+        this.hasMoreMessages = messages.length >= this.PAGE_SIZE;
         this.loading = false;
-        this.cdr.markForCheck();
+        this.cdr.detectChanges();
         console.log('Messages loaded:', this.messages);
-        
+
         // Scroll based on channel type
-        setTimeout(() => this.scrollToAppropriatePosition(), 100);
+        this.scrollToAppropriatePosition();
       },
       error: () => {
         this.error = true;
         this.loading = false;
-        this.cdr.markForCheck();
+        this.cdr.detectChanges();
       }
+    });
+  }
+
+  loadOlderMessages() {
+    if (this.loadingOlder || !this.hasMoreMessages || this.messages.length === 0) return;
+
+    this.loadingOlder = true;
+    const oldestMessageId = this.messages[0].id;
+    const container = this.messageContainer?.nativeElement;
+    const previousScrollHeight = container ? container.scrollHeight : 0;
+
+    this.discordService.getChannelMessages(this.channelId, this.PAGE_SIZE, oldestMessageId).subscribe({
+      next: (olderMessages: any) => {
+        if (olderMessages.length === 0) {
+          this.hasMoreMessages = false;
+          this.loadingOlder = false;
+          this.cdr.detectChanges();
+          return;
+        }
+
+        const reversed = olderMessages.reverse();
+        this.messages = [...reversed, ...this.messages];
+        this.hasMoreMessages = olderMessages.length >= this.PAGE_SIZE;
+        this.loadingOlder = false;
+        this.cdr.detectChanges();
+
+        // Maintain scroll position after prepending older messages
+        if (container) {
+          requestAnimationFrame(() => {
+            const newScrollHeight = container.scrollHeight;
+            container.scrollTop = newScrollHeight - previousScrollHeight;
+          });
+        }
+      },
+      error: () => {
+        this.loadingOlder = false;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  scrollToBottom() {
+    if (!this.messageContainer) return;
+    const container = this.messageContainer.nativeElement;
+    // Double rAF to ensure DOM is fully laid out after *ngIf switch
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        container.scrollTop = container.scrollHeight;
+      });
     });
   }
 
   private scrollToAppropriatePosition() {
     if (!this.messageContainer) return;
-    
+
     const container = this.messageContainer.nativeElement;
     if (this.isLearnChannel) {
       // Learn channels: scroll to top (first message)
-      container.scrollTop = 0;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          container.scrollTop = 0;
+        });
+      });
     } else {
       // Normal channels: scroll to bottom (last message)
-      container.scrollTop = container.scrollHeight;
+      this.scrollToBottom();
     }
   }
 
   scrollToTag(tag: string) {
     const container = this.messageContainer?.nativeElement;
     if (!container) return;
-    
+
     const anchorElement = container.querySelector(`#tag-${tag}`) as HTMLElement;
     if (anchorElement) {
       // Find the parent message-item
       const messageItem = anchorElement.closest('.message-item') as HTMLElement;
-      
+
       if (messageItem) {
         // Scroll to the message
         messageItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
+
         // Add highlight effect to the message item
         messageItem.classList.add('highlighted');
         setTimeout(() => messageItem.classList.remove('highlighted'), 2000);
@@ -156,7 +215,7 @@ export class MessageFeed implements OnChanges, AfterViewInit {
       // Detect and convert goto tags and anchor tags
       // Pattern: (start of string or whitespace) followed by goto#keyword or #keyword
       const tagPattern = /(^|\s)(goto)?#(\w+)/gi;
-      
+
       let processedContent = content.replace(tagPattern, (match, prefix, isGoto, keyword) => {
         if (isGoto) {
           // This is a goto link - make it clickable with data attribute
@@ -166,7 +225,7 @@ export class MessageFeed implements OnChanges, AfterViewInit {
           return `${prefix}<span id="tag-${keyword}" class="anchor-tag">#${keyword}</span>`;
         }
       });
-      
+
       // First, parse markdown
       const html = marked.parse(processedContent) as string;
       // Then sanitize the HTML (allowing our custom attributes)
@@ -182,6 +241,10 @@ export class MessageFeed implements OnChanges, AfterViewInit {
 
   trackByAttachmentId(index: number, attachment: DiscordAttachment): string {
     return attachment.id || `${attachment.filename}-${index}`;
+  }
+
+  trackByMessageId(index: number, message: DiscordMessage): string {
+    return message.id;
   }
 
   getAttachmentKind(attachment: DiscordAttachment): 'image' | 'video' | 'audio' | 'pdf' | 'file' {

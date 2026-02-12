@@ -67,8 +67,12 @@ export class DiscordService {
     return this.http.get<DiscordChannel[]>(`${this.apiUrl}/discord/channels`);
   }
 
-  getChannelMessages(channelId: string, limit: number = 50): Observable<DiscordMessage[]> {
-    return this.http.get<DiscordMessage[]>(`${this.apiUrl}/discord/channels/${channelId}/messages?limit=${limit}`);
+  getChannelMessages(channelId: string, limit: number = 50, before?: string): Observable<DiscordMessage[]> {
+    let url = `${this.apiUrl}/discord/channels/${channelId}/messages?limit=${limit}`;
+    if (before) {
+      url += `&before=${before}`;
+    }
+    return this.http.get<DiscordMessage[]>(url);
   }
 
   sendMessage(channelId: string, content: string): Observable<any> {
